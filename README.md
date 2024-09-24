@@ -1,1 +1,1 @@
-# Diplom
+# KP
