@@ -18,6 +18,7 @@ def test_search_film():
             headers=json)
     with allure.step("Проверка результата"):
         assert response.status_code == 200
+        assert response.json()["docs"][0]["ageRating"] == 16
 
 
 @allure.title("Поиск фильма по названию на латинице")
