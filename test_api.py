@@ -1,6 +1,6 @@
 import requests
 import allure
-from constants import Token
+from constants import *
 
 
 @allure.title("Поиск фильма по названию на кириллице")
@@ -13,7 +13,7 @@ def test_search_film():
         }
     with allure.step("Отправка запроса"):
         response = requests.get(
-            "https://api.kinopoisk.dev/v1.4/movie/"
+            f"{{BaseURL}}/movie/"
             "search?page=1&limit=10&query=Великолепный Век",
             headers=json)
     with allure.step("Проверка результата"):
@@ -30,7 +30,7 @@ def test_search_film_englisn():
         }
     with allure.step("Отправка запроса"):
         response = requests.get(
-            "https://api.kinopoisk.dev/v1.4/movie/"
+            f"{{BaseURL}}/movie/"
             "search?page=1&limit=10&query=Muhtesem Yüzyil",
             headers=json)
     with allure.step("Проверка результата"):
@@ -46,7 +46,7 @@ def test_search_id():
             "X-API-KEY": Token
         }
     response = requests.get(
-        " https://api.kinopoisk.dev/v1.4/movie/924910", headers=json)
+        f"{{BaseURL}}/movie/924910", headers=json)
 
     assert response.status_code == 200
 
@@ -64,7 +64,7 @@ def test_search_id_person():
         "X-API-KEY": Token
     }
     response = requests.get(
-        "https://api.kinopoisk.dev/v1.4/person/896879", headers=json)
+        f"{{BaseURL}}/person/896879", headers=json)
 
     assert response.status_code == 200
 
@@ -77,6 +77,6 @@ def test_search_id_picture():
         "X-API-KEY": Token
     }
     response = requests.get(
-        "https://api.kinopoisk.dev/v1.4/image?page=1&limit=1", headers=json)
+        f"{{BaseURL}}/image?page=1&limit=1", headers=json)
 
     assert response.status_code == 200
